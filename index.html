@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101724">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>东方 UNO · 幻想乡牌宴</title>
+  <style>
+    :root { color-scheme:dark; font-family:"Microsoft YaHei","PingFang SC",sans-serif; color:#fff2df; background:#101724; }
+    * { box-sizing:border-box; }
+    html,body { margin:0; width:100%; height:100%; overflow:hidden; overscroll-behavior:none; }
+    body { touch-action:none; }
+    #viewport { position:fixed; inset:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); overflow:hidden; background:#101724; }
+    #canvas { display:block; width:100%; height:100%; outline:none; touch-action:none; }
+    .overlay { position:fixed; inset:0; z-index:5; display:grid; place-items:center; padding:max(24px,env(safe-area-inset-top)) max(24px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(24px,env(safe-area-inset-left)); background:radial-gradient(ellipse at 55% 35%,#1b3941 0,#111c2b 48%,#101523 85%); }
+    .panel { width:min(440px,100%); text-align:center; }
+    .eyebrow { color:#d9b879; letter-spacing:.35em; font-size:14px; margin-bottom:15px; }
+    h1 { margin:0 0 32px; font-family:"Noto Serif SC","Songti SC",serif; font-size:clamp(38px,8vw,60px); font-weight:500; letter-spacing:.08em; }
+    #progress { appearance:none; width:100%; height:5px; margin:0 0 20px; border:0; border-radius:5px; overflow:hidden; background:#293647; }
+    #progress::-webkit-progress-bar { background:#293647; }
+    #progress::-webkit-progress-value { background:linear-gradient(90deg,#e6b855,#ff7f6d); }
+    #progress::-moz-progress-bar { background:#e6b855; }
+    #message { min-height:28px; font-size:16px; color:#bcc8d5; line-height:1.7; white-space:pre-line; }
+    button { font:inherit; color:inherit; cursor:pointer; touch-action:manipulation; border:1px solid #f5c574; background:#763e43; border-radius:12px; min-height:48px; padding:12px 28px; }
+    button:focus-visible { outline:3px solid #ffdd83; outline-offset:4px; }
+    button:disabled { cursor:wait; opacity:.55; }
+    #start { width:min(280px,100%); margin-top:22px; font-size:20px; background:linear-gradient(135deg,#b64953,#803b49); }
+    #fullscreen { position:fixed; z-index:3; left:max(12px,env(safe-area-inset-left)); top:max(10px,env(safe-area-inset-top)); border-color:#53637a; background:#152438d9; padding:6px 14px; min-height:38px; font-size:14px; }
+    #rotate { z-index:10; }
+    .phone { margin:0 auto 28px; width:90px; height:52px; border:3px solid #e6bf76; border-radius:10px; position:relative; }
+    .phone::after { content:""; position:absolute; width:4px; height:14px; background:#e6bf76; left:6px; top:16px; border-radius:3px; }
+    #rotate h2 { margin:0 0 14px; font-size:26px; font-weight:500; }
+    #rotate p { color:#b3c2d0; font-size:16px; line-height:1.8; }
+    .version { margin-top:28px; font-size:12px; color:#788899; }
+    [hidden] { display:none!important; }
+    @media (max-height:480px) { h1 { margin-bottom:16px; font-size:38px; } .eyebrow { margin-bottom:8px; } #start { margin-top:12px; } .version { margin-top:12px; } }
+  </style>
+  <link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
+<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
+
+</head>
+<body>
+  <div id="viewport"><canvas id="canvas" tabindex="0" aria-label="东方 UNO 游戏牌桌">此浏览器无法显示游戏画面。</canvas></div>
+  <button id="fullscreen" type="button" hidden aria-label="进入全屏">⛶ 全屏</button>
+  <section id="loading" class="overlay" aria-label="正在加载游戏">
+    <div class="panel">
+      <div class="eyebrow">幻想乡牌宴</div><h1>東方 UNO</h1>
+      <progress id="progress" max="1" aria-label="游戏加载进度"></progress>
+      <div id="message" role="status" aria-live="polite">正在准备牌桌…</div>
+      <button id="start" type="button" disabled>加载中…</button>
+      <div class="version">电脑 · 手机横屏</div>
+    </div>
+  </section>
+  <section id="rotate" class="overlay" hidden aria-label="请旋转手机">
+    <div class="panel"><div class="phone" aria-hidden="true"></div><h2>横过手机，准备开局</h2><p>横屏可以看清手牌与整张牌桌。</p></div>
+  </section>
+  <noscript><section class="overlay">请启用 JavaScript 后重新打开游戏。</section></noscript>
+  <script src="server-config.js"></script>
+  <script src="index.js"></script>
+  <script>
+    const config = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":28507140,"index.wasm":39509339},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+    const canvas = document.getElementById('canvas');
+    const viewport = document.getElementById('viewport');
+    const loading = document.getElementById('loading');
+    const progress = document.getElementById('progress');
+    const message = document.getElementById('message');
+    const start = document.getElementById('start');
+    const fullscreen = document.getElementById('fullscreen');
+    window.TouhouUNO = window.TouhouUNO || {};
+    let ready = false;
+    function resize() {
+      const bounds = viewport.getBoundingClientRect();
+      const scale = Math.min(window.devicePixelRatio || 1, 2);
+      const width = Math.max(1,Math.round(bounds.width*scale));
+      const height = Math.max(1,Math.round(bounds.height*scale));
+      if (canvas.width !== width) canvas.width = width;
+      if (canvas.height !== height) canvas.height = height;
+      const touch = navigator.maxTouchPoints > 0 || window.matchMedia('(pointer: coarse)').matches;
+      window.TouhouUNO.portrait = touch && bounds.height > bounds.width;
+      document.getElementById('rotate').hidden = !window.TouhouUNO.portrait;
+    }
+    window.addEventListener('resize', resize);
+    window.visualViewport?.addEventListener('resize', resize);
+    new ResizeObserver(resize).observe(viewport);
+    resize();
+    config.canvas = canvas;
+    config.canvasResizePolicy = 0;
+    const engine = new Engine(config);
+    function fail(error) {
+      console.error(error);
+      ready = false;
+      loading.hidden = false;
+      progress.hidden = true;
+      message.textContent = '牌桌暂时没能打开。请检查网络，或换用新版 Chrome、Edge、Safari 再试。';
+      start.textContent = '重新加载';
+      start.disabled = false;
+    }
+    start.addEventListener('click', () => {
+      if (!ready) { window.location.reload(); return; }
+      loading.hidden = true;
+      fullscreen.hidden = !document.fullscreenEnabled;
+      canvas.focus();
+      if (window.matchMedia('(pointer: coarse)').matches && document.fullscreenEnabled) {
+        document.documentElement.requestFullscreen().then(() => screen.orientation?.lock?.('landscape')).catch(() => {});
+      }
+    });
+    fullscreen.addEventListener('click', async () => {
+      try {
+        if (document.fullscreenElement) await document.exitFullscreen();
+        else await document.documentElement.requestFullscreen();
+      } catch (_) { /* Fullscreen is optional; the normal viewport stays playable. */ }
+      canvas.focus();
+    });
+    document.addEventListener('fullscreenchange', () => {
+      fullscreen.textContent = document.fullscreenElement ? '⛶ 退出全屏' : '⛶ 全屏';
+      resize();
+    });
+    const missing = Engine.getMissingFeatures({threads:false});
+    if (missing.length) {
+      fail(new Error(missing.join(', ')));
+      message.textContent = '这个浏览器尚不支持运行牌桌。请使用支持 WebGL 2 的新版浏览器。';
+    } else {
+      engine.startGame({onProgress(current,total) {
+        if (total > 0) {
+          progress.value = Math.min(1,current/total);
+          message.textContent = `正在载入牌桌 · ${Math.min(100,Math.round(current/total*100))}%`;
+        }
+      }}).then(() => {
+        ready = true;
+        progress.value = 1;
+        message.textContent = '牌桌已就绪';
+        start.textContent = '进入牌桌';
+        start.disabled = false;
+        resize();
+      }).catch(fail);
+    }
+  </script>
+</body>
+</html>
+
