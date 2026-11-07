@@ -1,4 +1,4 @@
 // Deployment may set a public wss:// endpoint here. Never put an access key here.
-// Players enter the private access code in the game's server settings.
+// Both game exports load the shared default from config/default-server.json.
 window.TouhouUNO = window.TouhouUNO || {};
-window.TouhouUNO.serverUrl = "";
+window.TouhouUNO.serverUrl = "wss://39.107.255.119";
