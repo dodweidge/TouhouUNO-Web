@@ -1,7 +1,7 @@
 {
-    "version":  "0.7.3",
-    "source_sha256":  "d6235db7d1e73e01cd291bbf9b25ac690c0ddaa40bbd8b6d172d34b064346d00",
-    "built_at_utc":  "2026-11-08T06:52:55.9389412Z",
-    "godot":  "4.7.stable.official.5b4e0cb0f",
-    "target":  "Web"
+  "version": "0.8.0",
+  "source_sha256": "8749028bd804a01788fa3493972e93fd49c0df7829cfd19c66de09b8f05ed54f",
+  "built_at_utc": "2026-11-08T10:32:07.2469128Z",
+  "godot": "4.7.stable.official.5b4e0cb0f",
+  "target": "Web"
 }

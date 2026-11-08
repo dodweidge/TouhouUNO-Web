@@ -47,7 +47,7 @@
 - 游戏完整字体：`assets/fonts/NotoSansSC.ttf`，真实字体名称 **Noto Sans SC**，简体中文黑体（无衬线）；原始文件名 `NotoSansSC[wght].ttf`，只改文件名，未修改字形。
 - 来源：[Google Fonts 官方仓库 / ofl/notosanssc](https://github.com/google/fonts/tree/main/ofl/notosanssc)。
 - [完整字体下载地址](https://raw.githubusercontent.com/google/fonts/main/ofl/notosanssc/NotoSansSC%5Bwght%5D.ttf)。下载日期 2026-11-08，文件大小 17,772,300 字节。
-- `assets/fonts/ui_font.tres` 将游戏默认字重设为 400；所有普通控件及自绘界面文字使用同一内置黑体，不依赖用户设备安装字体。3D 加牌数字沿用 Godot 内置无衬线字形 / 系统 Arial 的粗体轮廓，避免中文可变字体在 TextMesh 中出现自交。
+- `assets/fonts/ui_font.tres` 将游戏默认字重设为 400；所有普通控件及自绘界面文字使用同一内置黑体，不依赖用户设备安装字体。3D 加牌数字使用同源的 `assets/fonts/effect_numerals.ttf`：仅含 `+0123456789`，静态字重 800，合并重叠轮廓，衍生字体名 Touhou UNO Numerals ExtraBold。Windows/Web 使用完全相同的黑体字形与立体厚度，不依赖系统字体。该 4,260 字节子集由 fontTools 4.68.0 / skia-pathops 0.9.2 从上述 NotoSansSC.ttf 生成，沿用同一 OFL 许可；可用 `tools/build_effect_font.py` 及其注明的构建依赖重新生成。
 - 浏览器加载页：`web/static/NotoSansSC-UI.woff2`，由 [Google Fonts 官方 CSS API](https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&display=swap) 按加载页文本与 ASCII 字符生成的 WOFF2 子集，文件大小 42,844 字节；随网页本地分发，运行时不请求外部字体服务。若新增加载页文案，应同步重新生成此子集。
 - 许可：**SIL Open Font License 1.1**，完整原文及版权声明保存在 `assets/fonts/OFL.txt`。完整字体及网页子集分发时均保留该文件。
 
