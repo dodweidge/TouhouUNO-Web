@@ -92,3 +92,53 @@
 ## 3D 牌桌与卡背
 
 `scripts/table_3d.gd` 中的牌桌、纸张厚度、牌堆、桌布纹理与方向箭头由代码创建，使用项目已有卡面。`assets/card_back.svg` 为本项目绘制的阴阳玉矢量卡背；未使用参考截图中的商业背景、头像或卡背素材。
+
+## 新增幽幽子（H011，2026-11-09）
+
+收集日期：2026-11-09（Asia/Shanghai）。来源文件已按下述路径接入当前主目录，沿用已有本地临时素材管理方式。
+
+### 角色立绘
+
+| 项目路径 | 角色与原作 | 作者 / 权利人 | 原图尺寸 | 来源页面 |
+| --- | --- | --- | --- | --- |
+| `assets/characters/yuyuko.png` | 西行寺幽幽子，《东方永夜抄 ～ Imperishable Night.》 | ZUN / 上海爱丽丝幻乐团 | 256 × 512，透明 RGBA PNG | [THBWiki：西行寺幽幽子（永夜抄立绘）](https://thwiki.cc/index.php?curid=2506) |
+
+[原始 PNG 下载地址](https://upload.thbwiki.cc/3/3d/%E8%A5%BF%E8%A1%8C%E5%AF%BA%E5%B9%BD%E5%B9%BD%E5%AD%90%EF%BC%88%E6%B0%B8%E5%A4%9C%E6%8A%84%E7%AB%8B%E7%BB%98%EF%BC%89.png)。文件页归类为「官方游戏立绘」「ZUN绘」「东方永夜抄」，文件页编号为 2506。通过来源页读取原图地址后下载，保存为 `yuyuko.png`，只改文件名，没有裁切、缩放、重新编码或绘制；没有下载游戏安装包。
+
+文件大小为 165,011 字节；SHA-256：`93c9a8a80622e3a196df9f014bbb18d53e64f06a4419f4a8128cc6cb45f906f9`。已核对 PNG 编码、256 × 512 尺寸、RGBA 像素格式，并静态查看原图；已按本轮用户选择增量导入 Godot，并由无界面加载专项确认 Texture2D 尺寸；实际游戏画面未验证。
+
+沿用原项目约定：这是个人练习用的本地临时官方立绘，不是 CC0 或开源素材，能下载不代表获得公开分发许可。公开仓库或发布前的移除、替换及授权处理遵循现有素材说明，文件与导入元数据沿用 `.gitignore` 中 `assets/characters/*.png` 和 `*.png.import` 的排除。
+
+### 技能语音
+
+| 项目路径 | 角色 / 声优 | 官方试听来源 | 最终音频 |
+| --- | --- | --- | --- |
+| `assets/audio/voices/yuyuko_skill.wav` | 西行寺幽幽子 / 柏山奈々美（Nanami Kashiyama） | [弹幕神乐官网存档角色页：西行寺 幽々子，VOICE 3](https://danmaku.jp/archive/character/c047/)；[原始试听 M4A](https://danmaku.jp/import/character/c047_voice3.m4a) | 7.522 秒，44,100 Hz，单声道 PCM16 WAV，663,502 字节 |
+
+官网角色页明确标示声优「柏山奈々美」并提供 VOICE 1／2／3；该角色编号为 `c047`。已核对官网页面脚本：此角色没有自定义语音数组，VOICE 3 按 `/import/character/<角色编号>_voice3.m4a` 加载，因此本次使用 `c047_voice3.m4a`。这是《东方弹幕神乐》的真人配音公开试听，不是 ZUN 原作游戏配音或 AI 声音；版权标示为 ©上海アリス幻樂団 / ©アンノウンX。
+
+原始 M4A：AAC、44,100 Hz、单声道，编码流时长 7.569705 秒，60,934 字节；SHA-256：`cd73fd580b73ee32522733e38e759d2f9da315a6ee10f59417cf46d49a0c5eb8`。
+
+转换后的 WAV：PCM signed 16-bit little-endian、44,100 Hz、单声道，实际时长 7.521814 秒，663,502 字节；SHA-256：`7cd1f99098e7224bf542d158e654735e7a6303c40843679ac3ad586c92d331bb`。
+
+完整解码为 WAV 以兼容 Godot，没有截断、变速、变调、混音或拼接；前后时长差来自 AAC 编码填充的移除。未添加未经确认的台词字幕。转换工具为本机 FFmpeg `2025-02-24-git-6232f416b1-full_build-www.gyan.dev`，命令为：
+
+```text
+ffmpeg -v error -nostdin -i source/c047_voice3.m4a -map 0:a:0 -c:a pcm_s16le yuyuko_skill.wav
+```
+
+已用 FFprobe 核对格式，并执行完整解码检查 `ffmpeg -v error -nostdin -i yuyuko_skill.wav -f null NUL`，退出码为 0，无解码错误。已增量导入 Godot，加载专项确认完整 7.521814 秒 AudioStreamWAV 及演出时长；未进行听感或真实游戏播放测试。
+
+收尾时另对 `yuyuko.png`、原始 `source/c047_voice3.m4a` 与 `yuyuko_skill.wav` 分别进行完整媒体解码，三次均退出 0；重新计算三份文件哈希，与 `yuyuko-assets.json` 一致。
+
+沿用原项目约定：录音仅作为个人练习的本地临时配音，不是 CC0 或开源素材；官网可试听不等于公开再分发许可。继续由 `assets/audio/voices/*.wav` 和 `*.wav.import` 忽略，公开分发前按现有来源说明移除、替换或确认授权。
+
+### 素材文件与来源证据
+
+- 可接入文件：`yuyuko.png`、`yuyuko_skill.wav`。
+- 原始语音：`source/c047_voice3.m4a`，不随游戏打包。
+- 来源证据：`source/thbwiki-file-page.html`、`source/danmaku-character-page.html`、`source/danmaku-character-page-script.js`。THBWiki 文件页在搜索工具未命中缓存，实际 HTTPS 读取成功；上述页面保存了分类、原图地址和角色编号。
+- 结构化记录：`yuyuko-assets.json`，包含来源、元数据、哈希、转换命令及未验证范围。
+
+
+来源证据与元数据已归档到主目录忽略的 `builds/h011/assets/`；不随游戏打包。
