@@ -1,7 +1,7 @@
 {
-  "version": "0.8.0",
-  "source_sha256": "8749028bd804a01788fa3493972e93fd49c0df7829cfd19c66de09b8f05ed54f",
-  "built_at_utc": "2026-11-08T10:32:07.2469128Z",
+  "version": "0.8.1",
+  "source_sha256": "184a8cab9ef21f31481a847086c9ed2af91d5b11f45c1f499935dade3511603d",
+  "built_at_utc": "2026-11-08T12:07:35.2522354Z",
   "godot": "4.7.stable.official.5b4e0cb0f",
   "target": "Web"
 }
