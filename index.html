@@ -7,7 +7,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>东方 UNO · 幻想乡牌宴</title>
   <style>
-    :root { color-scheme:dark; font-family:"Microsoft YaHei","PingFang SC",sans-serif; color:#fff2df; background:#101724; }
+    @font-face { font-family:"Noto Sans SC"; font-style:normal; font-weight:100 900; font-display:swap; src:url("static/NotoSansSC-UI.woff2") format("woff2"); }
+    :root { color-scheme:dark; font-family:"Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif; color:#fff2df; background:#101724; }
     * { box-sizing:border-box; }
     html,body { margin:0; width:100%; height:100%; overflow:hidden; overscroll-behavior:none; }
     body { touch-action:none; }
@@ -16,7 +17,7 @@
     .overlay { position:fixed; inset:0; z-index:5; display:grid; place-items:center; padding:max(24px,env(safe-area-inset-top)) max(24px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(24px,env(safe-area-inset-left)); background:radial-gradient(ellipse at 55% 35%,#1b3941 0,#111c2b 48%,#101523 85%); }
     .panel { width:min(440px,100%); text-align:center; }
     .eyebrow { color:#d9b879; letter-spacing:.35em; font-size:14px; margin-bottom:15px; }
-    h1 { margin:0 0 32px; font-family:"Noto Serif SC","Songti SC",serif; font-size:clamp(38px,8vw,60px); font-weight:500; letter-spacing:.08em; }
+    h1 { margin:0 0 32px; font-family:inherit; font-size:clamp(38px,8vw,60px); font-weight:500; letter-spacing:.08em; }
     #progress { appearance:none; width:100%; height:5px; margin:0 0 20px; border:0; border-radius:5px; overflow:hidden; background:#293647; }
     #progress::-webkit-progress-bar { background:#293647; }
     #progress::-webkit-progress-value { background:linear-gradient(90deg,#e6b855,#ff7f6d); }
@@ -59,7 +60,7 @@
   <script src="server-config.js"></script>
   <script src="index.js"></script>
   <script>
-    const config = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":28507416,"index.wasm":39509339},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+    const config = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":23206548,"index.wasm":39509339},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
     const canvas = document.getElementById('canvas');
     const viewport = document.getElementById('viewport');
     const loading = document.getElementById('loading');
