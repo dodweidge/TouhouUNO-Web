@@ -1,6 +1,6 @@
 # 素材来源与替换说明
 
-记录日期：2026-10-24。此项目是基于东方 Project 的个人练习同人作品，与官方无关联。
+最后更新：2026-11-08。此项目是基于东方 Project 的个人练习同人作品，与官方无关联。
 
 ## 角色立绘（本地临时素材）
 
@@ -8,13 +8,17 @@
 | --- | --- | --- | --- | --- |
 | `assets/characters/reimu.png` | 博丽灵梦，《东方永夜抄 ～ Imperishable Night.》 | ZUN / 上海爱丽丝幻乐团 | 256 × 512，透明 PNG | [THBWiki：博丽灵梦（永夜抄立绘）](https://thwiki.cc/index.php?curid=2623) |
 | `assets/characters/marisa.png` | 雾雨魔理沙，《东方永夜抄 ～ Imperishable Night.》 | ZUN / 上海爱丽丝幻乐团 | 256 × 512，透明 PNG | [THBWiki：雾雨魔理沙（永夜抄立绘）](https://thwiki.cc/index.php?curid=9347) |
+| `assets/characters/flandre.png` | 芙兰朵露·斯卡蕾特，《东方红魔乡 ～ the Embodiment of Scarlet Devil.》 | ZUN / 上海爱丽丝幻乐团 | 256 × 256，透明 RGBA PNG | [THBWiki：芙兰朵露·斯卡蕾特（红魔乡立绘）](https://thwiki.cc/index.php?curid=8964) |
 
-两张文件在 THBWiki 文件页均归类为「官方游戏立绘」「ZUN绘」「东方永夜抄」。下载后保留原始像素内容，仅在本项目中改名。没有使用同人图冒充官方图，也没有下载游戏安装包。
+三张文件在 THBWiki 文件页均归类为「官方游戏立绘」「ZUN绘」；灵梦、魔理沙来自「东方永夜抄」，芙兰朵露来自「东方红魔乡」。下载后保留原始像素内容，仅在本项目中改名。没有使用同人图冒充官方图，也没有下载游戏安装包。
 
 下载地址：
 
 - [灵梦原图](https://upload.thbwiki.cc/1/18/%E5%8D%9A%E4%B8%BD%E7%81%B5%E6%A2%A6%EF%BC%88%E6%B0%B8%E5%A4%9C%E6%8A%84%E7%AB%8B%E7%BB%98%EF%BC%89.png)
 - [魔理沙原图](https://upload.thbwiki.cc/b/bc/%E9%9B%BE%E9%9B%A8%E9%AD%94%E7%90%86%E6%B2%99%EF%BC%88%E6%B0%B8%E5%A4%9C%E6%8A%84%E7%AB%8B%E7%BB%98%EF%BC%89.png)
+- [芙兰朵露原图](https://upload.thbwiki.cc/4/4d/%E8%8A%99%E5%85%B0%E6%9C%B5%E9%9C%B2%C2%B7%E6%96%AF%E5%8D%A1%E8%95%BE%E7%89%B9%EF%BC%88%E7%BA%A2%E9%AD%94%E4%B9%A1%E7%AB%8B%E7%BB%98%EF%BC%89.png)
+
+芙兰朵露立绘下载于 2026-11-08，86,015 字节；SHA-256：`652df9efb93bc6201fb8232b1ad5bf5f38543c62f98c3300c0e38da664970b48`。已核对 PNG 编码、尺寸、透明通道并静态查看原图；未进行 Godot 导入或真实游戏画面检查。
 
 这些立绘不是 CC0 或开源素材，网站可下载不代表获得公开分发许可。目前按个人练习需求作为本地临时素材保留。将来公开 GitHub 仓库、发布游戏包或分发项目之前，应替换为自绘或明确获授权的立绘，或移除这些文件。[东方 Project 官方二次创作指引](https://touhou-project.news/guidelines_en/) 列出不得在二创内容中使用从官方游戏提取的素材；仅注明非商业用途不能替代素材授权。
 
@@ -63,14 +67,17 @@
 
 ## 角色技能语音（本地临时素材）
 
-两段真人角色配音来自 **《东方弹幕神乐 / 東方ダンマクカグラ》官网存档角色页的 VOICE 3 公开试听**。这是东方 Project 衍生游戏的角色配音，并非 ZUN 原作游戏配音，也不是 AI 模仿声线。官网版权标示为 ©上海アリス幻樂団 / ©アンノウンX。
+三段真人角色配音来自 **《东方弹幕神乐 / 東方ダンマクカグラ》官网存档角色页的 VOICE 3 公开试听**。这是东方 Project 衍生游戏的角色配音，并非 ZUN 原作游戏配音，也不是 AI 模仿声线。官网版权标示为 ©上海アリス幻樂団 / ©アンノウンX。
 
 | 项目路径 | 角色 / 声优 | 官方试听来源 | 最终音频 |
 | --- | --- | --- | --- |
 | `assets/audio/voices/reimu_skill.wav` | 博丽灵梦 / 湯浅かえで（Kaede Yuasa） | [官网角色页：博麗霊夢，VOICE 3](https://danmaku.jp/archive/character/c001/)；[原始试听 M4A](https://danmaku.jp/import/character/c001_voice3.m4a) | 2.065 秒，44,100 Hz，单声道 PCM16 WAV，182,222 字节 |
 | `assets/audio/voices/marisa_skill.wav` | 雾雨魔理沙 / 本多真梨子（Mariko Honda） | [官网角色页：霧雨魔理沙，VOICE 3](https://danmaku.jp/archive/character/c002/)；[原始试听 M4A](https://danmaku.jp/import/character/c002_voice3.m4a) | 4.062 秒，44,100 Hz，单声道 PCM16 WAV，358,350 字节 |
+| `assets/audio/voices/flandre_skill.wav` | 芙兰朵露·斯卡蕾特 / 花守ゆみり（Yumiri Hanamori） | [官网角色页：フランドール・スカーレット，VOICE 3](https://danmaku.jp/archive/character/c013/)；[原始试听 M4A](https://danmaku.jp/import/character/c013_voice3.m4a) | 5.734 秒，44,100 Hz，单声道 PCM16 WAV，505,806 字节 |
 
-原始公开试听为 M4A。为兼容 Godot，将完整试听解码为 WAV，未裁切台词、变调、变速或拼接；解码时移除了原编码格式的填充时间。两条最终 WAV 均通过完整音频解码验证。
+原始公开试听为 M4A。为兼容 Godot，将完整试听解码为 WAV，未裁切台词、变调、变速或拼接；解码时移除了原编码格式的填充时间。三条最终 WAV 均通过完整音频解码验证。
+
+芙兰朵露语音下载于 2026-11-08。官网角色页标示声优「花守ゆみり」与 VOICE 3；页面脚本的试听地址规则为 `/import/character/<角色编号>_voice3.m4a`，该角色编号为 `c013`。原始 M4A 为 44,380 字节，SHA-256：`eddba66409e73859d1b78aeee957c6d6312d3797f2abe0471f0c8097f8650d02`；完整解码后的 WAV SHA-256：`11b2a1fe002a207b8cca1775a5614254cf562ac16c3b80d49b934c474e0e6bcf`。本轮仅检查媒体格式与完整解码，未进行听感、Godot 导入或游戏播放测试；不添加未经确认的台词字幕。原始 M4A 暂存于收集工作目录的 `builds/h008-source/`，不随游戏打包。
 
 官网没有附逐字台词，游戏演出不显示未经人工确认的字幕。使用电脑已有离线转写模型得到的参考识别结果如下（仅用于辨认素材，不视为官方文字稿）：灵梦「さっさと次に行きましょ」；魔理沙「ほらー、さっさと来ないと置いてくぞー！」。两段均为推动行动的短句，不声称是「博丽结界」或「魔力重构」的官方技能台词。
 
@@ -80,7 +87,7 @@
 
 ## 后续替换
 
-角色图保持透明 PNG，并沿用 `reimu.png`、`marisa.png` 文件名即可替换。卡面可沿用上述文件名。背景音乐可替换 `assets/audio/bgm.mp3`，技能语音可替换 `assets/audio/voices/reimu_skill.wav`、`marisa_skill.wav`。公开仓库前请先处理角色立绘、背景音乐与角色语音录音；代码、CC0 卡面与 OFL 字体可以分别保留各自许可和来源说明。
+角色图保持透明 PNG，并沿用 `reimu.png`、`marisa.png`、`flandre.png` 文件名即可替换。卡面可沿用上述文件名。背景音乐可替换 `assets/audio/bgm.mp3`，技能语音可替换 `assets/audio/voices/reimu_skill.wav`、`marisa_skill.wav`、`flandre_skill.wav`。公开仓库前请先处理角色立绘、背景音乐与角色语音录音；代码、CC0 卡面与 OFL 字体可以分别保留各自许可和来源说明。
 
 ## 3D 牌桌与卡背
 
