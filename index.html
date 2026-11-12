@@ -51,7 +51,7 @@
       <div id="message" role="status" aria-live="polite">正在准备牌桌…</div>
       <button id="start" type="button" disabled>加载中…</button>
       <div class="version">电脑 · 手机横屏</div>
-      <div class="version" id="build-version">构建：0.8.5+0e185e30eadd.dirty.3f3842d6e628</div>
+      <div class="version" id="build-version">构建：0.9.3+29c35e46a16c.dirty.4e2d69a224e7</div>
     </div>
   </section>
   <section id="rotate" class="overlay" hidden aria-label="请旋转手机">
@@ -61,7 +61,7 @@
   <script src="server-config.js"></script>
   <script src="index.js"></script>
   <script>
-    const config = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":23714320,"index.wasm":39509339},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+    const config = {"args":[],"canvasResizePolicy":0,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":24403132,"index.wasm":39509339},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
     const canvas = document.getElementById('canvas');
     const viewport = document.getElementById('viewport');
     const loading = document.getElementById('loading');
@@ -71,6 +71,25 @@
     const fullscreen = document.getElementById('fullscreen');
     window.TouhouUNO = window.TouhouUNO || {};
     let ready = false;
+    let engineStarted = false;
+    let preparationDone = false;
+    let startupFailed = false;
+    let preparationProgress = 0;
+    function updateStartup() {
+      if (startupFailed) return;
+      ready = engineStarted && preparationDone;
+      progress.value = ready ? 1 : Math.max(Number(progress.value) || 0, 0.8 + preparationProgress * 0.19);
+      message.textContent = ready ? '牌桌已就绪' : `正在载入牌桌 · ${Math.round(progress.value * 100)}%`;
+      start.textContent = ready ? '进入牌桌' : '加载中…';
+      start.disabled = !ready;
+    }
+    window.TouhouUNO.reportPreparation = (current,total) => {
+      if (!(total > 0) || !Number.isFinite(current) || !Number.isFinite(total)) return;
+      preparationProgress = Math.max(preparationProgress,Math.min(1,Math.max(0,current/total)));
+      preparationDone = preparationProgress === 1;
+      updateStartup();
+    };
+    window.TouhouUNO.preparationFailed = () => fail(new Error('Game preparation failed'));
     function resize() {
       const bounds = viewport.getBoundingClientRect();
       const scale = Math.min(window.devicePixelRatio || 1, 2);
@@ -91,6 +110,7 @@
     const engine = new Engine(config);
     function fail(error) {
       console.error(error);
+      startupFailed = true;
       ready = false;
       loading.hidden = false;
       progress.hidden = true;
@@ -124,16 +144,14 @@
       message.textContent = '这个浏览器尚不支持运行牌桌。请使用支持 WebGL 2 的新版浏览器。';
     } else {
       engine.startGame({onProgress(current,total) {
+        if (startupFailed) return;
         if (total > 0) {
-          progress.value = Math.min(1,current/total);
-          message.textContent = `正在载入牌桌 · ${Math.min(100,Math.round(current/total*100))}%`;
+          progress.value = Math.max(Number(progress.value) || 0, Math.min(0.8,current/total * 0.8));
+          message.textContent = `正在载入牌桌 · ${Math.round(progress.value*100)}%`;
         }
       }}).then(() => {
-        ready = true;
-        progress.value = 1;
-        message.textContent = '牌桌已就绪';
-        start.textContent = '进入牌桌';
-        start.disabled = false;
+        engineStarted = true;
+        updateStartup();
         resize();
       }).catch(fail);
     }

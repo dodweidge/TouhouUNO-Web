@@ -1,6 +1,6 @@
 # 素材来源与替换说明
 
-最后更新：2026-11-08。此项目是基于东方 Project 的个人练习同人作品，与官方无关联。
+最后更新：2026-11-12。此项目是基于东方 Project 的个人练习同人作品，与官方无关联。
 
 ## 角色立绘（本地临时素材）
 
@@ -8,9 +8,9 @@
 | --- | --- | --- | --- | --- |
 | `assets/characters/reimu.png` | 博丽灵梦，《东方永夜抄 ～ Imperishable Night.》 | ZUN / 上海爱丽丝幻乐团 | 256 × 512，透明 PNG | [THBWiki：博丽灵梦（永夜抄立绘）](https://thwiki.cc/index.php?curid=2623) |
 | `assets/characters/marisa.png` | 雾雨魔理沙，《东方永夜抄 ～ Imperishable Night.》 | ZUN / 上海爱丽丝幻乐团 | 256 × 512，透明 PNG | [THBWiki：雾雨魔理沙（永夜抄立绘）](https://thwiki.cc/index.php?curid=9347) |
-| `assets/characters/flandre.png` | 芙兰朵露·斯卡蕾特，《东方红魔乡 ～ the Embodiment of Scarlet Devil.》 | ZUN / 上海爱丽丝幻乐团 | 256 × 256，透明 RGBA PNG | [THBWiki：芙兰朵露·斯卡蕾特（红魔乡立绘）](https://thwiki.cc/index.php?curid=8964) |
+| `assets/characters/flandre.png` | 芙兰朵露，全身与武器 | 用户提供图片，原作者未核实；角色原作上海爱丽丝幻乐团 | 1162 × 1353，透明 RGBA PNG | 本会话附件，经内置图像编辑去背景 |
 
-三张文件在 THBWiki 文件页均归类为「官方游戏立绘」「ZUN绘」；灵梦、魔理沙来自「东方永夜抄」，芙兰朵露来自「东方红魔乡」。下载后保留原始像素内容，仅在本项目中改名。没有使用同人图冒充官方图，也没有下载游戏安装包。
+以下为 H008 历史来源；芙兰已由 H020 全身图替换，旧文件备份保存在 builds/h020/assets/flandre-previous.png。原三张文件在 THBWiki 文件页均归类为「官方游戏立绘」「ZUN绘」；灵梦、魔理沙来自「东方永夜抄」，芙兰朵露来自「东方红魔乡」。下载后保留原始像素内容，仅在本项目中改名。没有使用同人图冒充官方图，也没有下载游戏安装包。
 
 下载地址：
 
@@ -142,3 +142,19 @@ ffmpeg -v error -nostdin -i source/c047_voice3.m4a -map 0:a:0 -c:a pcm_s16le yuy
 
 
 来源证据与元数据已归档到主目录忽略的 `builds/h011/assets/`；不随游戏打包。
+
+## H020：蕾米莉亚与芙兰全身图（2026-11-12）
+
+- 蕾米莉亚立绘：`assets/characters/remilia.png`，ZUN / 上海爱丽丝幻乐团《东方永夜抄》，256 × 512 RGBA PNG。[THBWiki 文件页](https://thwiki.cc/文件:蕾米莉亚·斯卡蕾特（永夜抄立绘）.png)；[原图](https://upload.thbwiki.cc/e/e0/%E8%95%BE%E7%B1%B3%E8%8E%89%E4%BA%9A%C2%B7%E6%96%AF%E5%8D%A1%E8%95%BE%E7%89%B9%EF%BC%88%E6%B0%B8%E5%A4%9C%E6%8A%84%E7%AB%8B%E7%BB%98%EF%BC%89.png)。原字节不变，仅改名；SHA-256 `f4b0377edd053402fe26d964598a1f9c110f9b4dda3d440915ccc5423b95e21b`。
+- 芙兰全身立绘：`assets/characters/flandre.png`，采用[东方弹幕神乐官方角色页](https://danmaku.jp/archive/character/c013/)的 [c013_boss.png](https://danmaku.jp/import/character/c013_boss.png)，作者栗栖 歳；675 × 467 RGBA PNG，完整身体、双腿与翅膀。原字节不变；SHA-256 `17cd873d644c05ff53849c3a9ba77916155e755ade8b8504660b48d7756f61b8`。未采用先核对的刚欲异闻半身图。
+- 蕾米莉亚语音：`assets/audio/voices/remilia_skill.wav`，声优山岡ゆり，来自[官方角色页 VOICE 3](https://danmaku.jp/archive/character/c007/)及[原始试听](https://danmaku.jp/import/character/c007_voice3.m4a)。完整转换为 44,100 Hz 单声道 PCM16 WAV，时长 5.594558 秒，未裁切或变速；SHA-256 `9010c2f16e18decac532588231b6762c157f5b1724431c3281e8d89870b7c891`。版权 ©上海アリス幻樂団 / ©アンノウンX。
+
+来源页面、播放器脚本、原始语音、元数据和旧图备份在 `builds/h020/assets/`。这些本地练习素材沿用已有忽略规则，不纳入 Git；静态解码与图片查看、用户选择的 Godot 导入及无界面资源加载检查已通过；真实画面和听感未验证。
+
+## H023：用户提供的芙兰全身持武器图
+
+- 用户于 2026-11-12 提供 440 × 512 RGB 黑底图，要求换立绘、去背景并保留完整主体和武器。本轮未将其归为官方素材，原作者未核实。
+- 使用内置图像编辑工具进行透明抠图，最终接入 assets/characters/flandre.png（1162 × 1353 RGBA）；并非声称原始像素逐点不变。检查帽子、双翼晶体、双脚、左侧弧形武器和腿间钩尾均保留；全身显示沿用 KEEP_ASPECT_CENTERED，头像另取头部区域。
+- 最终 SHA-256：ed9761f259df8a9442037f8d5c3a228e59ace9bde848a97419032ab290d1dfe0。源图及旧立绘备份、透明通道信息在 builds/h023/assets；H020 图作为历史记录保留，不再代表当前芙兰立绘。
+- 编辑提示：只提取原图角色、去除纯黑背景为透明；保留原造型和颜色，不裁切帽子、头发、所有翼晶体、两只鞋及整根黑色武器，清理背景边缘，保留透明边距。最终英文提示全文位于 builds/h023/assets/edit-prompt.txt。
+- 原生导入及无界面资源加载检查通过；没有打开实际游戏、截图或检验实际屏幕效果。语音未改。
