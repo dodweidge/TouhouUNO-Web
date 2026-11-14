@@ -1,10 +1,10 @@
 {
-    "version":  "0.9.3",
-    "git_commit":  "29c35e46a16c0b7a2b79f2f9e636a58934295bc1",
+    "version":  "0.13.5",
+    "git_commit":  "3f7e91c452ac3c611aeb77bf7481100ca64e89d2",
     "git_dirty":  true,
-    "source_sha256":  "03bd04ce1292fd62656e400a67219a05d609d060a60ea695dd181fbefca53e8c",
-    "built_at_utc":  "2026-11-12T15:38:09.5034096Z",
-    "build_id":  "0.9.3+29c35e46a16c.dirty.03bd04ce1292",
+    "source_sha256":  "5e9f516ba8e7bc7e664d6a3f2747df68275e34a583cca0b351cc9522ab46733f",
+    "built_at_utc":  "2026-11-14T08:22:29.6739752Z",
+    "build_id":  "0.13.5+3f7e91c452ac.dirty.5e9f516ba8e7",
     "godot":  "4.7.stable.official.5b4e0cb0f",
     "target":  "Web"
 }

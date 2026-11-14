@@ -63,6 +63,7 @@
 - 已验证：MP3、44,100 Hz、双声道、时长约 **4 分 20 秒**，文件大小 4,161,330 字节。SHA-256：`507ca5c5096ecc8b00b977237a16555a1c443b90615a1ba414108d6c637cf9cf`。
 - 这是作者官网公开供下载聆听的录音，不是 CC0 或开源音乐；官网保留 ZUN 的著作权。本项目作为个人练习的本地 BGM 使用，没有声称获得公开再分发许可。未来公开 GitHub 仓库或发布游戏包前，须另行确认使用许可，或移除、替换此录音。
 - `scripts/audio_manager.gd` 自动循环播放这首音乐，默认音量 -20 dB；音乐开关和音量保存在 Godot 的 `user://audio_settings.cfg`。
+- 咲夜时停使用用户提供的 `assets/audio/clock1.mp3`，保留原始 MP3。时停期间独立循环播放，结束后恢复 BGM。
 - 出牌、摸牌、UNO、技能、胜负及回合提示音由 `audio_manager.gd` 程序生成短音符，不截取或改编上述 BGM，不依赖其他声音素材。
 
 ## 角色技能语音（本地临时素材）
@@ -150,6 +151,11 @@ ffmpeg -v error -nostdin -i source/c047_voice3.m4a -map 0:a:0 -c:a pcm_s16le yuy
 - 蕾米莉亚语音：`assets/audio/voices/remilia_skill.wav`，声优山岡ゆり，来自[官方角色页 VOICE 3](https://danmaku.jp/archive/character/c007/)及[原始试听](https://danmaku.jp/import/character/c007_voice3.m4a)。完整转换为 44,100 Hz 单声道 PCM16 WAV，时长 5.594558 秒，未裁切或变速；SHA-256 `9010c2f16e18decac532588231b6762c157f5b1724431c3281e8d89870b7c891`。版权 ©上海アリス幻樂団 / ©アンノウンX。
 
 来源页面、播放器脚本、原始语音、元数据和旧图备份在 `builds/h020/assets/`。这些本地练习素材沿用已有忽略规则，不纳入 Git；静态解码与图片查看、用户选择的 Godot 导入及无界面资源加载检查已通过；真实画面和听感未验证。
+
+## H034 十六夜咲夜
+
+- `assets/characters/sakuya.png` 使用 ZUN《东方永夜抄》的透明立绘，256 × 512，保留 PNG 原字节。SHA-256 为 `7c01c27316dba14e12c561bdabec6e2f83b0ba78d81c39b8eff2312aa289ead4`。[原图](https://upload.thbwiki.cc/1/14/十六夜咲夜（永夜抄立绘）.png)
+- `assets/audio/voices/sakuya_skill.wav` 使用《东方弹幕神乐》Lynn 配音的官方 VOICE 3 试听，完整解码为 PCM16。SHA-256 为 `f978dd26309e391940c9cd4171ed86bb8e6776117e9ca74cd9a062191b1f556c`。原始素材沿用项目的本地练习和 Git 忽略约定。[官方角色页](https://danmaku.jp/archive/character/c006/) · [原始试听](https://danmaku.jp/import/character/c006_voice3.m4a)
 
 ## H023：用户提供的芙兰全身持武器图
 
