@@ -57,12 +57,9 @@
 
 ## 背景音乐与操作音效
 
-- 背景音乐：**リーインカーネーション / Reincarnation（东方梦时空，魅魔主题）**，作曲及官网编曲录音：**ZUN / 上海爱丽丝幻乐团**。
-- 来源：[上海爱丽丝幻乐团官方网站「东方幻想的音乐」旧曲页面](https://www16.big.or.jp/~zun/html/music_old.html)，页面 MP3 栏中的「リーインカーネーション」，公开日期 2001-10-30。
-- [官网直接下载地址](https://www16.big.or.jp/~zun/data/mp3/th3_05.mp3)。下载后仅改文件名为 `assets/audio/bgm.mp3`，没有改编、裁切、变速或重新编码。
-- 已验证：MP3、44,100 Hz、双声道、时长约 **4 分 20 秒**，文件大小 4,161,330 字节。SHA-256：`507ca5c5096ecc8b00b977237a16555a1c443b90615a1ba414108d6c637cf9cf`。
-- 这是作者官网公开供下载聆听的录音，不是 CC0 或开源音乐；官网保留 ZUN 的著作权。本项目作为个人练习的本地 BGM 使用，没有声称获得公开再分发许可。未来公开 GitHub 仓库或发布游戏包前，须另行确认使用许可，或移除、替换此录音。
-- `scripts/audio_manager.gd` 自动循环播放这首音乐，默认音量 -20 dB；音乐开关和音量保存在 Godot 的 `user://audio_settings.cfg`。
+- 菜单、房间与选角使用舞風《東方幽靜響 ~introduction~》，来自用户提供的 `开始界面-舞風《東方幽靜響-東方幽靜響~introduction~》.136128199.mp4`。游戏文件为 `assets/audio/bgm_menu.mp3`，约 1 分 09 秒。
+- 对局使用《香る樹葉花》，来自用户提供的 `打牌_香る樹葉花.flac.500001580589233.mp4`。游戏文件为 `assets/audio/bgm_match.mp3`，约 3 分 18 秒。
+- 两段录音均提取完整音轨，转为 44.1 kHz、双声道、128 kb/s MP3，作为本地练习素材。两首分别循环播放。首装音乐音量为 10%，总体、音效与语音均为 100%。
 - 咲夜时停使用用户提供的 `assets/audio/clock1.mp3`，保留原始 MP3。时停期间独立循环播放，结束后恢复 BGM。
 - 出牌、摸牌、UNO、技能、胜负及回合提示音由 `audio_manager.gd` 程序生成短音符，不截取或改编上述 BGM，不依赖其他声音素材。
 
@@ -84,11 +81,11 @@
 
 官网允许访问试听不等于允许在其他作品中公开再分发，这些录音不是 CC0 或开源素材。本项目仅按个人练习需求作为本地临时配音保留，并在 `.gitignore` 中排除。公开仓库或发布游戏包前，应移除、换为自行录制或明确获授权的录音。临时下载文件与转写依赖存放在工程外的 `work/voice-source-v3/`，不随项目打包。
 
-`audio_manager.gd` 使用独立语音播放器，默认增益 0.85；语音播放时将 BGM 临时降低 11 dB，结束或跳过演出后恢复用户设置的音乐音量。语音开关保存在原有 `user://audio_settings.cfg` 的 `[voice] enabled` 字段；缺失语音文件时安静跳过，不阻断技能演出。
+`audio_manager.gd` 使用独立语音播放器，默认增益 0.85；语音播放时将 BGM 临时降低 11 dB，结束或跳过演出后恢复用户设置的音乐音量。四项音量保存在 `user://audio_settings.cfg` 的 `[volume]` 中，首次读取旧设置时会继承音乐音量及音乐、语音的静音状态；缺失语音文件时安静跳过，不阻断技能演出。
 
 ## 后续替换
 
-角色图保持透明 PNG，并沿用 `reimu.png`、`marisa.png`、`flandre.png` 文件名即可替换。卡面可沿用上述文件名。背景音乐可替换 `assets/audio/bgm.mp3`，技能语音可替换 `assets/audio/voices/reimu_skill.wav`、`marisa_skill.wav`、`flandre_skill.wav`。公开仓库前请先处理角色立绘、背景音乐与角色语音录音；代码、CC0 卡面与 OFL 字体可以分别保留各自许可和来源说明。
+角色图保持透明 PNG，并沿用 `reimu.png`、`marisa.png`、`flandre.png` 文件名即可替换。卡面可沿用上述文件名。背景音乐可替换 `assets/audio/bgm_menu.mp3` 和 `assets/audio/bgm_match.mp3`，技能语音可替换 `assets/audio/voices/reimu_skill.wav`、`marisa_skill.wav`、`flandre_skill.wav`。公开仓库前请先处理角色立绘、背景音乐与角色语音录音；代码、CC0 卡面与 OFL 字体可以分别保留各自许可和来源说明。
 
 ## 3D 牌桌与卡背
 
